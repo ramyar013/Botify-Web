@@ -68,35 +68,63 @@ export default function Home() {
         @keyframes ambientOrb {
           0%, 100% {
             transform: translate3d(0, 0, 0) scale(1);
-            opacity: 0.40;
+            opacity: 0.42;
           }
           50% {
-            transform: translate3d(16px, -10px, 0) scale(1.04);
-            opacity: 0.56;
+            transform: translate3d(16px, -10px, 0) scale(1.05);
+            opacity: 0.58;
           }
         }
 
-        @keyframes borderShift {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 200% 50%; }
+        @keyframes ledPulse {
+          0%, 100% {
+            box-shadow:
+              0 0 0 1px rgba(249, 115, 22, 0.26),
+              0 0 18px rgba(249, 115, 22, 0.18),
+              0 0 38px rgba(239, 68, 68, 0.10),
+              0 0 80px rgba(249, 115, 22, 0.08);
+          }
+          50% {
+            box-shadow:
+              0 0 0 1px rgba(251, 146, 60, 0.42),
+              0 0 24px rgba(249, 115, 22, 0.28),
+              0 0 56px rgba(239, 68, 68, 0.18),
+              0 0 110px rgba(249, 115, 22, 0.14);
+          }
         }
 
-        @keyframes softPulse {
-          0%, 100% { opacity: 0.66; }
-          50% { opacity: 1; }
+        @keyframes ledPulseSoft {
+          0%, 100% {
+            box-shadow:
+              0 0 0 1px rgba(249, 115, 22, 0.20),
+              0 0 12px rgba(249, 115, 22, 0.12),
+              0 0 28px rgba(239, 68, 68, 0.06),
+              0 0 58px rgba(249, 115, 22, 0.05);
+          }
+          50% {
+            box-shadow:
+              0 0 0 1px rgba(251, 146, 60, 0.34),
+              0 0 18px rgba(249, 115, 22, 0.20),
+              0 0 38px rgba(239, 68, 68, 0.12),
+              0 0 80px rgba(249, 115, 22, 0.10);
+          }
         }
 
         .warm-frame {
           box-shadow:
-            0 0 18px rgba(249, 115, 22, 0.15),
-            0 0 34px rgba(239, 68, 68, 0.08);
+            0 0 0 1px rgba(249, 115, 22, 0.22),
+            0 0 18px rgba(249, 115, 22, 0.16),
+            0 0 34px rgba(239, 68, 68, 0.08),
+            0 0 70px rgba(249, 115, 22, 0.07);
           transform: translateZ(0);
         }
 
         .warm-frame-soft {
           box-shadow:
-            0 0 12px rgba(249, 115, 22, 0.10),
-            0 0 24px rgba(239, 68, 68, 0.05);
+            0 0 0 1px rgba(249, 115, 22, 0.16),
+            0 0 10px rgba(249, 115, 22, 0.10),
+            0 0 22px rgba(239, 68, 68, 0.05),
+            0 0 46px rgba(249, 115, 22, 0.04);
           transform: translateZ(0);
         }
 
@@ -107,8 +135,6 @@ export default function Home() {
           border: 1px solid transparent !important;
           background-origin: border-box;
           background-clip: padding-box, border-box;
-          background-size: 100% 100%, 220% 100%;
-          animation: borderShift 7s linear infinite;
           transform: translateZ(0);
         }
 
@@ -116,23 +142,23 @@ export default function Home() {
           background-image:
             linear-gradient(rgba(11,17,29,0.96), rgba(11,17,29,0.96)),
             linear-gradient(
-              90deg,
-              rgba(249,115,22,0.26),
+              135deg,
+              rgba(249,115,22,0.34),
               rgba(251,146,60,0.96),
-              rgba(239,68,68,0.98),
-              rgba(249,115,22,0.26)
+              rgba(239,68,68,0.90),
+              rgba(249,115,22,0.34)
             );
         }
 
         .animated-outline-soft {
           background-image:
-            linear-gradient(rgba(11,17,29,0.88), rgba(11,17,29,0.88)),
+            linear-gradient(rgba(11,17,29,0.90), rgba(11,17,29,0.90)),
             linear-gradient(
-              90deg,
-              rgba(249,115,22,0.18),
-              rgba(251,146,60,0.74),
-              rgba(239,68,68,0.78),
-              rgba(249,115,22,0.18)
+              135deg,
+              rgba(249,115,22,0.24),
+              rgba(251,146,60,0.72),
+              rgba(239,68,68,0.72),
+              rgba(249,115,22,0.24)
             );
         }
 
@@ -140,11 +166,11 @@ export default function Home() {
           background-image:
             linear-gradient(#ffffff, #ffffff),
             linear-gradient(
-              90deg,
-              rgba(249,115,22,0.34),
+              135deg,
+              rgba(249,115,22,0.38),
               rgba(251,146,60,0.98),
-              rgba(239,68,68,0.98),
-              rgba(249,115,22,0.34)
+              rgba(239,68,68,0.96),
+              rgba(249,115,22,0.38)
             );
         }
 
@@ -159,8 +185,10 @@ export default function Home() {
         .interactive-card:hover {
           transform: translate3d(0, -4px, 0);
           box-shadow:
-            0 0 22px rgba(249,115,22,0.18),
-            0 0 38px rgba(239,68,68,0.10);
+            0 0 0 1px rgba(251,146,60,0.28),
+            0 0 22px rgba(249,115,22,0.22),
+            0 0 44px rgba(239,68,68,0.12),
+            0 0 90px rgba(249,115,22,0.10);
         }
 
         .hero-float {
@@ -203,7 +231,11 @@ export default function Home() {
         }
 
         .glow-breathe {
-          animation: softPulse 3.8s ease-in-out infinite;
+          animation: ledPulse 4.2s ease-in-out infinite;
+        }
+
+        .glow-breathe-soft {
+          animation: ledPulseSoft 4.6s ease-in-out infinite;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -253,7 +285,7 @@ export default function Home() {
         id="download"
         className="relative scroll-mt-20 overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-18 md:pb-32 md:pt-28"
       >
-        <div className="ambient-orb pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_12%,rgba(249,115,22,0.17),transparent_30%),radial-gradient(circle_at_72%_34%,rgba(239,68,68,0.13),transparent_34%),radial-gradient(circle_at_28%_24%,rgba(37,99,235,0.18),transparent_32%)]" />
+        <div className="ambient-orb pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_12%,rgba(249,115,22,0.20),transparent_30%),radial-gradient(circle_at_72%_34%,rgba(239,68,68,0.15),transparent_34%),radial-gradient(circle_at_28%_24%,rgba(37,99,235,0.18),transparent_32%)]" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="grid items-center gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
@@ -303,7 +335,7 @@ export default function Home() {
             </div>
 
             <div className="hero-float relative mx-auto w-full max-w-xl lg:mx-0">
-              <div className="absolute -inset-8 rounded-full bg-blue-600/10 blur-3xl" />
+              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.22),rgba(239,68,68,0.10),transparent_72%)] blur-3xl" />
 
               <div className="warm-frame animated-outline glow-breathe relative rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-2.5 shadow-2xl shadow-black/30 sm:rounded-[2rem] sm:p-4">
                 <div className="rounded-[1.1rem] border border-white/10 bg-[#0b111d] p-4 sm:rounded-[1.5rem] sm:p-5">
@@ -318,14 +350,14 @@ export default function Home() {
                   </div>
 
                   <div className="mt-5 space-y-4">
-                    <div className="animated-outline-soft interactive-card max-w-[92%] rounded-2xl rounded-tl-md border border-white/10 bg-white/[0.04] p-4 sm:max-w-[85%]">
+                    <div className="animated-outline-soft glow-breathe-soft interactive-card max-w-[92%] rounded-2xl rounded-tl-md border border-white/10 bg-white/[0.04] p-4 sm:max-w-[85%]">
                       <p className="text-xs text-gray-500">Customer</p>
                       <p className="mt-2 text-sm leading-6 text-gray-300">
                         Hi, is this product available today?
                       </p>
                     </div>
 
-                    <div className="animated-outline-soft interactive-card ml-auto max-w-[94%] rounded-2xl rounded-tr-md border border-blue-500/20 bg-blue-500/10 p-4 sm:max-w-[88%]">
+                    <div className="animated-outline-soft glow-breathe-soft interactive-card ml-auto max-w-[94%] rounded-2xl rounded-tr-md border border-blue-500/20 bg-blue-500/10 p-4 sm:max-w-[88%]">
                       <p className="text-xs text-blue-400">Botify Bot</p>
                       <p className="mt-2 text-sm leading-6 text-gray-200">
                         Yes, it is available. I can also help you with the price,
@@ -341,7 +373,7 @@ export default function Home() {
                       ].map(([name, status]) => (
                         <div
                           key={name}
-                          className="warm-frame-soft animated-outline-soft interactive-card rounded-xl border border-white/10 bg-black/10 p-3"
+                          className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-xl border border-white/10 bg-black/10 p-3"
                         >
                           <p className="truncate text-xs font-medium text-gray-300">
                             {name}
@@ -391,7 +423,7 @@ export default function Home() {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="warm-frame-soft animated-outline-soft interactive-card rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition sm:p-6"
+                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition sm:p-6"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/15 text-sm font-bold text-blue-400">
                   ✓
@@ -429,7 +461,7 @@ export default function Home() {
               {steps.map(([number, title, text]) => (
                 <div
                   key={number}
-                  className="warm-frame-soft animated-outline-soft interactive-card rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6"
+                  className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6"
                 >
                   <div className="text-sm font-bold text-blue-400">{number}</div>
                   <h3 className="mt-5 text-lg font-semibold">{title}</h3>
@@ -442,7 +474,7 @@ export default function Home() {
       </section>
 
       <section id="security" className="reveal-up reveal-delay-3 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
-        <div className="warm-frame animated-outline mx-auto max-w-7xl rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-blue-600/[0.04] p-5 sm:p-8 md:p-12">
+        <div className="warm-frame animated-outline glow-breathe mx-auto max-w-7xl rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-blue-600/[0.04] p-5 sm:p-8 md:p-12">
           <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
@@ -461,7 +493,7 @@ export default function Home() {
             <div className="grid gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-1">
               <a
                 href="/privacy"
-                className="warm-frame-soft animated-outline-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
+                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
               >
                 <p className="font-semibold">Privacy Policy</p>
                 <p className="mt-2 text-sm text-gray-500">
@@ -471,7 +503,7 @@ export default function Home() {
 
               <a
                 href="/terms"
-                className="warm-frame-soft animated-outline-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
+                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
               >
                 <p className="font-semibold">Terms of Service</p>
                 <p className="mt-2 text-sm text-gray-500">
@@ -481,7 +513,7 @@ export default function Home() {
 
               <a
                 href="/data-deletion"
-                className="warm-frame-soft animated-outline-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
+                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
               >
                 <p className="font-semibold">Data Deletion</p>
                 <p className="mt-2 text-sm text-gray-500">

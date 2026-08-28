@@ -18,7 +18,7 @@ export default function Home() {
     },
     {
       title: "Business Instructions",
-      text: "Tell Botify Bot how your business should respond, what it should know, and how it should communicate.",
+      text: "Tell Botify bot Ltd how your business should respond, what it should know, and how it should communicate.",
     },
     {
       title: "Built for Mobile",
@@ -27,9 +27,9 @@ export default function Home() {
   ];
 
   const steps = [
-    ["01", "Download Botify Bot", "Install the app from the App Store or Google Play."],
+    ["01", "Download Botify bot Ltd", "Install the app from the App Store or Google Play."],
     ["02", "Connect your channels", "Connect the messaging platforms your business already uses."],
-    ["03", "Configure your AI", "Add business information and define how Botify Bot should respond."],
+    ["03", "Configure your AI", "Add business information and define how Botify bot Ltd should respond."],
     ["04", "Start responding smarter", "Use AI assistance to handle customer conversations faster."],
   ];
 
@@ -254,7 +254,7 @@ export default function Home() {
       <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#070b14]/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
           <a href="#download" className="shrink-0 text-lg font-bold tracking-tight sm:text-xl">
-            Botify Bot
+            Botify bot Ltd
           </a>
 
           <div className="hidden items-center gap-8 text-sm text-gray-300 md:flex">
@@ -269,6 +269,9 @@ export default function Home() {
             </a>
             <a href="#download" className="transition hover:text-white">
               Download
+            </a>
+            <a href="#contact" className="transition hover:text-white">
+              Contact
             </a>
           </div>
 
@@ -300,7 +303,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-5 max-w-2xl text-base leading-7 text-gray-400 sm:mt-7 sm:text-lg sm:leading-8">
-                Botify Bot helps businesses manage customer conversations across
+                Botify bot Ltd helps businesses manage customer conversations across
                 WhatsApp, Facebook, and Instagram with AI-powered assistance
                 designed for everyday business use.
               </p>
@@ -341,7 +344,7 @@ export default function Home() {
                 <div className="rounded-[1.1rem] border border-white/10 bg-[#0b111d] p-4 sm:rounded-[1.5rem] sm:p-5">
                   <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div>
-                      <p className="text-xs text-gray-500">Botify Bot</p>
+                      <p className="text-xs text-gray-500">Botify bot Ltd</p>
                       <p className="mt-1 font-semibold">Business Inbox</p>
                     </div>
                     <div className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400">
@@ -358,7 +361,7 @@ export default function Home() {
                     </div>
 
                     <div className="animated-outline-soft glow-breathe-soft interactive-card ml-auto max-w-[94%] rounded-2xl rounded-tr-md border border-blue-500/20 bg-blue-500/10 p-4 sm:max-w-[88%]">
-                      <p className="text-xs text-blue-400">Botify Bot</p>
+                      <p className="text-xs text-blue-400">Botify bot Ltd</p>
                       <p className="mt-2 text-sm leading-6 text-gray-200">
                         Yes, it is available. I can also help you with the price,
                         delivery details, or any other question.
@@ -452,7 +455,7 @@ export default function Home() {
                 From download to smarter replies in a few steps.
               </h2>
               <p className="mt-5 leading-7 text-gray-400">
-                Botify Bot is designed to keep setup simple so businesses can
+                Botify bot Ltd is designed to keep setup simple so businesses can
                 focus on customers instead of complicated tools.
               </p>
             </div>
@@ -484,7 +487,7 @@ export default function Home() {
                 Clear policies. Responsible access.
               </h2>
               <p className="mt-5 max-w-2xl leading-7 text-gray-400">
-                Botify Bot provides clear privacy, terms, and data deletion
+                Botify bot Ltd provides clear privacy, terms, and data deletion
                 information so businesses can understand how the service works
                 before connecting their messaging channels.
               </p>
@@ -507,7 +510,7 @@ export default function Home() {
               >
                 <p className="font-semibold">Terms of Service</p>
                 <p className="mt-2 text-sm text-gray-500">
-                  Review the terms for using Botify Bot.
+                  Review the terms for using Botify bot Ltd.
                 </p>
               </a>
 
@@ -525,11 +528,67 @@ export default function Home() {
         </div>
       </section>
 
+
+      <section
+        id="contact"
+        className="reveal-up reveal-delay-3 border-t border-white/10 px-4 py-16 sm:px-6 sm:py-20 md:py-24"
+      >
+        <div className="warm-frame animated-outline glow-breathe mx-auto max-w-7xl rounded-3xl border border-white/10 bg-white/[0.025] p-5 sm:p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-12">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
+                Contact Us
+              </p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+                Get in touch with Botify bot Ltd.
+              </h2>
+              <p className="mt-5 max-w-xl leading-7 text-gray-400">
+                For business, support, privacy, or data-related enquiries, contact us using the details provided here.
+              </p>
+            </div>
+
+            <div className="grid gap-4">
+              <div className="warm-frame-soft animated-outline-soft glow-breathe-soft rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+                  Business email
+                </p>
+                <a
+                  href="mailto:support@botifybot.co"
+                  className="mt-2 inline-block break-all text-base font-semibold text-blue-400 transition hover:text-blue-300"
+                >
+                  support@botifybot.co
+                </a>
+              </div>
+
+              <div className="warm-frame-soft animated-outline-soft glow-breathe-soft rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+                  Company number
+                </p>
+                <p className="mt-2 text-base font-semibold text-gray-200">
+                  17424187
+                </p>
+              </div>
+
+              <div className="warm-frame-soft animated-outline-soft glow-breathe-soft rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+                  Address
+                </p>
+                <address className="mt-2 not-italic text-base leading-7 text-gray-300">
+                  Diamond Court, Water Street, Bakewell, DE45 1EW
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 text-sm text-gray-500 sm:px-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="font-medium text-gray-300">Botify Bot</p>
+            <p className="font-medium text-gray-300">Botify bot Ltd</p>
             <p className="mt-1">AI-powered customer conversations.</p>
+            <p className="mt-1 text-xs text-gray-600">Company number: 17424187</p>
+            <p className="mt-1 max-w-md text-xs leading-5 text-gray-600">Diamond Court, Water Street, Bakewell, DE45 1EW</p>
           </div>
 
           <div className="flex flex-wrap gap-5">
@@ -550,7 +609,7 @@ export default function Home() {
             </a>
           </div>
 
-          <p>© 2026 Botify Bot. All rights reserved.</p>
+          <p>© 2026 Botify bot Ltd. All rights reserved.</p>
         </div>
       </footer>
     </main>

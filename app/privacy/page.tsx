@@ -2,18 +2,18 @@ export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-[#070b14] px-6 py-16 text-white">
       <div className="mx-auto max-w-3xl">
-        <a href="/" className="text-sm text-gray-400 transition hover:text-white">← Back to Botify Bot</a>
+        <a href="/" className="text-sm text-gray-400 transition hover:text-white">← Back to Botify bot Ltd</a>
         <h1 className="mt-8 text-4xl font-bold tracking-tight">Privacy Policy</h1>
-        <p className="mt-3 text-sm text-gray-500">Last updated: August 27, 2026</p>
+        <p className="mt-3 text-sm text-gray-500">Last updated: August 28, 2026</p>
 
         <section className="mt-10">
           <h2 className="text-xl font-semibold">1. Introduction</h2>
-          <p className="mt-3 text-sm leading-7 text-gray-300">Botify Bot provides AI-powered tools that help businesses manage and automate customer conversations across supported messaging platforms. This Privacy Policy explains how information may be processed when using Botify Bot.</p>
+          <p className="mt-3 text-sm leading-7 text-gray-300">Botify bot Ltd provides AI-powered tools that help businesses manage and automate customer conversations across supported messaging platforms. This Privacy Policy explains how information may be processed when using Botify bot Ltd. Botify bot Ltd operates under company number 17424187 and can be contacted at Diamond Court, Water Street, Bakewell, DE45 1EW.</p>
         </section>
 
         <section className="mt-9">
           <h2 className="text-xl font-semibold">2. Information We Process</h2>
-          <p className="mt-3 text-sm leading-7 text-gray-300">When you use Botify Bot, we may process account information, messaging data, conversation content, connected-channel information, and technical information required to provide, secure, and maintain the service.</p>
+          <p className="mt-3 text-sm leading-7 text-gray-300">When you use Botify bot Ltd, we may process account information, messaging data, conversation content, connected-channel information, and technical information required to provide, secure, and maintain the service.</p>
         </section>
 
         <section className="mt-9">
@@ -23,12 +23,12 @@ export default function PrivacyPage() {
 
         <section className="mt-9">
           <h2 className="text-xl font-semibold">4. Third-Party Platforms</h2>
-          <p className="mt-3 text-sm leading-7 text-gray-300">Botify Bot may connect with third-party services such as WhatsApp, Facebook, and Instagram. Use of those platforms is also subject to their respective privacy policies, terms, and platform requirements.</p>
+          <p className="mt-3 text-sm leading-7 text-gray-300">Botify bot Ltd may connect with third-party services such as WhatsApp, Facebook, and Instagram. Use of those platforms is also subject to their respective privacy policies, terms, and platform requirements.</p>
         </section>
 
         <section className="mt-9">
           <h2 className="text-xl font-semibold">5. Data Security</h2>
-          <p className="mt-3 text-sm leading-7 text-gray-300">We use reasonable technical and organizational measures designed to protect information processed through Botify Bot. No online service can guarantee absolute security.</p>
+          <p className="mt-3 text-sm leading-7 text-gray-300">We use reasonable technical and organizational measures designed to protect information processed through Botify bot Ltd. No online service can guarantee absolute security.</p>
         </section>
 
         <section className="mt-9">
@@ -44,7 +44,12 @@ export default function PrivacyPage() {
 
         <section className="mt-9">
           <h2 className="text-xl font-semibold">8. Contact</h2>
-          <p className="mt-3 text-sm leading-7 text-gray-300">For privacy questions or requests, contact us at <a href="mailto:support@botifybot.co" className="text-blue-400 transition hover:text-blue-300">support@botifybot.co</a>.</p>
+          <div className="mt-3 space-y-2 text-sm leading-7 text-gray-300">
+            <p>For privacy questions or requests, contact <a href="mailto:support@botifybot.co" className="text-blue-400 transition hover:text-blue-300">support@botifybot.co</a>.</p>
+            <p><strong className="text-gray-200">Company:</strong> Botify bot Ltd</p>
+            <p><strong className="text-gray-200">Company number:</strong> 17424187</p>
+            <p><strong className="text-gray-200">Address:</strong> Diamond Court, Water Street, Bakewell, DE45 1EW</p>
+          </div>
         </section>
 
         <section className="mt-9">
@@ -52,7 +57,7 @@ export default function PrivacyPage() {
           <p className="mt-3 text-sm leading-7 text-gray-300">We may update this Privacy Policy when our services, integrations, or legal requirements change. The latest version will remain available on this page.</p>
         </section>
 
-        <footer className="mt-12 border-t border-white/10 pt-6 text-xs text-gray-600">© 2026 Botify Bot. All rights reserved.</footer>
+        <footer className="mt-12 border-t border-white/10 pt-6 text-xs text-gray-600">© 2026 Botify bot Ltd. All rights reserved.</footer>
       </div>
     </main>
   );

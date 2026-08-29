@@ -54,6 +54,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold">9. Contact</h2>
           <div className="mt-3 space-y-2 text-sm leading-7 text-gray-300">
             <p>For questions about these Terms, contact <a href="mailto:support@botifybot.co" className="text-blue-400 transition hover:text-blue-300">support@botifybot.co</a>.</p>
+            <p><strong className="text-gray-200">Phone:</strong> <a href="tel:+447412845318" className="text-blue-400 transition hover:text-blue-300">+44 7412 845318</a></p>
             <p><strong className="text-gray-200">Company:</strong> Botify bot Ltd</p>
             <p><strong className="text-gray-200">Company number:</strong> 17424187</p>
             <p><strong className="text-gray-200">Address:</strong> Diamond Court, Water Street, Bakewell, DE45 1EW</p>

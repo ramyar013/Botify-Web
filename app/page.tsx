@@ -558,6 +558,18 @@ export default function Home() {
                 >
                   support@botifybot.co
                 </a>
+
+                <div className="mt-5 border-t border-white/10 pt-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+                    Phone
+                  </p>
+                  <a
+                    href="tel:+447412845318"
+                    className="mt-2 inline-block text-base font-semibold text-gray-200 transition hover:text-white"
+                  >
+                    +44 7412 845318
+                  </a>
+                </div>
               </div>
 
               <div className="warm-frame-soft animated-outline-soft glow-breathe-soft rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6">

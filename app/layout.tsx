@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   title: "Botify Bot | AI Customer Conversations",
   description:
     "Botify Bot helps businesses automate customer conversations across WhatsApp, Facebook, and Instagram using AI.",
+  verification: {
+    other: {
+      "facebook-domain-verification":
+        "1gmfp1ep9cb5nawq58sql4iyo85xnr",
+    },
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -34,7 +34,7 @@ export default function Home() {
   ];
 
   return (
-    <main id="home" className="min-h-screen bg-[#070b14] text-white">
+    <main className="min-h-screen bg-[#070b14] text-white">
       <style>{`
         html {
           scroll-behavior: smooth;
@@ -258,7 +258,7 @@ export default function Home() {
             className="flex shrink-0 items-center gap-2.5 text-lg font-bold tracking-tight sm:text-xl"
           >
             <img
-              src="/botify-logo.png"
+              src="data:image/webp;base64,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"
               alt="Botify bot Ltd logo"
               className="h-9 w-9 rounded-lg object-cover sm:h-10 sm:w-10"
             />
@@ -275,7 +275,7 @@ export default function Home() {
             <a href="#how-it-works" className="transition hover:text-white">
               How It Works
             </a>
-            <a href="#security" className="transition hover:text-white">
+            <a href="#privacy" className="transition hover:text-white">
               Privacy
             </a>
             <a href="#download" className="transition hover:text-white">
@@ -296,8 +296,8 @@ export default function Home() {
       </nav>
 
       <section
-        id="download"
-        className="relative scroll-mt-20 overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-18 md:pb-32 md:pt-28"
+        id="home"
+        className="relative scroll-mt-24 overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-18 md:pb-32 md:pt-28"
       >
         <div className="ambient-orb pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_12%,rgba(249,115,22,0.20),transparent_30%),radial-gradient(circle_at_72%_34%,rgba(239,68,68,0.15),transparent_34%),radial-gradient(circle_at_28%_24%,rgba(37,99,235,0.18),transparent_32%)]" />
 
@@ -418,7 +418,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="features" className="reveal-up reveal-delay-2 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+      <section id="features" className="reveal-up reveal-delay-2 scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
@@ -454,7 +454,7 @@ export default function Home() {
 
       <section
         id="how-it-works"
-        className="reveal-up reveal-delay-2 border-y border-white/10 bg-white/[0.015] px-4 py-16 sm:px-6 sm:py-20 md:py-24"
+        className="reveal-up reveal-delay-2 scroll-mt-24 border-y border-white/10 bg-white/[0.015] px-4 py-16 sm:px-6 sm:py-20 md:py-24"
       >
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-9 sm:gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-12">
@@ -487,7 +487,47 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="security" className="reveal-up reveal-delay-3 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+
+      <section
+        id="download"
+        className="reveal-up reveal-delay-3 scroll-mt-24 border-y border-white/10 bg-white/[0.015] px-4 py-16 sm:px-6 sm:py-20 md:py-24"
+      >
+        <div className="warm-frame animated-outline glow-breathe mx-auto max-w-7xl rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-blue-600/[0.04] p-5 sm:p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
+                Download
+              </p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+                Get Botify bot Ltd on your phone.
+              </h2>
+              <p className="mt-5 max-w-2xl leading-7 text-gray-400">
+                The official App Store and Google Play links will be added here after publication.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:flex sm:flex-wrap sm:gap-4 lg:justify-end">
+              <a
+                href="#"
+                className="store-button warm-frame animated-outline-light interactive-card w-full rounded-2xl border border-white/10 bg-white px-5 py-3 text-left text-black transition hover:opacity-95 sm:w-auto sm:min-w-52 sm:px-6"
+              >
+                <span className="block text-xs">Download on the</span>
+                <span className="block text-lg font-semibold">App Store</span>
+              </a>
+
+              <a
+                href="#"
+                className="store-button warm-frame animated-outline-light interactive-card w-full rounded-2xl border border-white/10 bg-white px-5 py-3 text-left text-black transition hover:opacity-95 sm:w-auto sm:min-w-52 sm:px-6"
+              >
+                <span className="block text-xs">GET IT ON</span>
+                <span className="block text-lg font-semibold">Google Play</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="privacy" className="reveal-up reveal-delay-3 scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
         <div className="warm-frame animated-outline glow-breathe mx-auto max-w-7xl rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-blue-600/[0.04] p-5 sm:p-8 md:p-12">
           <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:items-center">
             <div>
@@ -542,7 +582,7 @@ export default function Home() {
 
       <section
         id="contact"
-        className="reveal-up reveal-delay-3 border-t border-white/10 px-4 py-16 sm:px-6 sm:py-20 md:py-24"
+        className="reveal-up reveal-delay-3 scroll-mt-24 border-t border-white/10 px-4 py-16 sm:px-6 sm:py-20 md:py-24"
       >
         <div className="warm-frame animated-outline glow-breathe mx-auto max-w-7xl rounded-3xl border border-white/10 bg-white/[0.025] p-5 sm:p-8 md:p-12">
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-12">

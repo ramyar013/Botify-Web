@@ -1,4 +1,82 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
+function BotifyLogoMark({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
+  const scale =
+    size === "sm" ? "h-10 w-10 text-3xl" : size === "lg" ? "h-28 w-28 text-8xl" : "h-14 w-14 text-5xl";
+  const head = size === "lg" ? "h-12 w-14" : size === "sm" ? "h-5 w-6" : "h-7 w-8";
+  const eye = size === "lg" ? "h-4 w-3" : size === "sm" ? "h-1.5 w-1.5" : "h-2.5 w-2";
+
+  return (
+    <div className={`relative isolate flex items-center justify-center ${scale}`} aria-hidden="true">
+      <div className="absolute left-[2%] top-[49%] z-10 -translate-y-1/2">
+        <div className={`botify-robot-head ${head}`}>
+          <div className="botify-robot-face">
+            <span className={`botify-robot-eye ${eye}`} />
+            <span className={`botify-robot-eye ${eye}`} />
+          </div>
+          <div className="botify-robot-antenna" />
+          <div className="botify-robot-ear" />
+        </div>
+      </div>
+
+      <span className="relative z-20 font-black leading-none tracking-[-0.08em] text-transparent bg-[linear-gradient(180deg,#f8fbff_10%,#dbeafe_30%,#60a5fa_70%,#2563eb_100%)] bg-clip-text drop-shadow-[0_0_24px_rgba(37,99,235,0.28)]">
+        B
+      </span>
+    </div>
+  );
+}
+
+function ScrollRobot({ progress }: { progress: number }) {
+  const translateY = 22 - progress * 30;
+  const rotate = -10 + progress * 20;
+  const floatX = Math.sin(progress * 8) * 10;
+
+  return (
+    <div
+      className="pointer-events-none fixed bottom-4 right-3 z-40 md:bottom-6 md:right-6"
+      style={{
+        transform: `translate3d(${floatX}px, ${translateY}px, 0) rotate(${rotate}deg)`,
+        transition: "transform 120ms linear",
+      }}
+    >
+      <div className="botify-scroll-robot rounded-[1.75rem] border border-white/10 bg-[#0b1220]/92 p-3 shadow-[0_12px_60px_rgba(37,99,235,0.22)] backdrop-blur-xl md:p-4">
+        <div className="absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_30%_25%,rgba(59,130,246,0.18),transparent_42%),radial-gradient(circle_at_72%_78%,rgba(37,99,235,0.16),transparent_40%)]" />
+        <div className="relative flex items-center gap-3">
+          <div className="relative">
+            <div className="botify-robot-head h-12 w-14">
+              <div className="botify-robot-face">
+                <span className="botify-robot-eye h-3 w-2.5" />
+                <span className="botify-robot-eye h-3 w-2.5" />
+              </div>
+              <div className="botify-robot-antenna" />
+              <div className="botify-robot-ear" />
+            </div>
+          </div>
+
+          <div className="hidden md:block">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">Botify bot Ltd</p>
+            <p className="mt-1 text-sm text-gray-300">Your AI assistant is ready.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY || 0);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollProgress = useMemo(() => Math.min(scrollY / 1400, 1), [scrollY]);
+
   const features = [
     {
       title: "AI-Powered Replies",
@@ -34,7 +112,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#070b14] text-white">
+    <main className="min-h-screen overflow-x-hidden bg-[#060b15] text-white">
       <style>{`
         html {
           scroll-behavior: smooth;
@@ -42,276 +120,230 @@ export default function Home() {
 
         body {
           overflow-x: hidden;
+          background: #060b15;
         }
 
-        @keyframes floatCard {
+        @keyframes floatSlow {
           0%, 100% { transform: translate3d(0, 0, 0); }
-          50% { transform: translate3d(0, -6px, 0); }
+          50% { transform: translate3d(0, -10px, 0); }
         }
 
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translate3d(0, 16px, 0);
-          }
-          to {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-          }
-        }
-
-        @keyframes sheen {
-          0% { transform: translate3d(-170%, 0, 0) skewX(-18deg); }
-          60%, 100% { transform: translate3d(280%, 0, 0) skewX(-18deg); }
-        }
-
-        @keyframes ambientOrb {
-          0%, 100% {
-            transform: translate3d(0, 0, 0) scale(1);
-            opacity: 0.42;
-          }
-          50% {
-            transform: translate3d(16px, -10px, 0) scale(1.05);
-            opacity: 0.58;
-          }
-        }
-
-        @keyframes ledPulse {
+        @keyframes pulseGlow {
           0%, 100% {
             box-shadow:
-              0 0 0 1px rgba(249, 115, 22, 0.26),
-              0 0 18px rgba(249, 115, 22, 0.18),
-              0 0 38px rgba(239, 68, 68, 0.10),
-              0 0 80px rgba(249, 115, 22, 0.08);
+              0 0 0 1px rgba(59,130,246,0.22),
+              0 0 18px rgba(59,130,246,0.12),
+              0 0 56px rgba(37,99,235,0.10);
           }
           50% {
             box-shadow:
-              0 0 0 1px rgba(251, 146, 60, 0.42),
-              0 0 24px rgba(249, 115, 22, 0.28),
-              0 0 56px rgba(239, 68, 68, 0.18),
-              0 0 110px rgba(249, 115, 22, 0.14);
+              0 0 0 1px rgba(96,165,250,0.35),
+              0 0 26px rgba(59,130,246,0.18),
+              0 0 76px rgba(37,99,235,0.16);
           }
         }
 
-        @keyframes ledPulseSoft {
-          0%, 100% {
-            box-shadow:
-              0 0 0 1px rgba(249, 115, 22, 0.20),
-              0 0 12px rgba(249, 115, 22, 0.12),
-              0 0 28px rgba(239, 68, 68, 0.06),
-              0 0 58px rgba(249, 115, 22, 0.05);
-          }
-          50% {
-            box-shadow:
-              0 0 0 1px rgba(251, 146, 60, 0.34),
-              0 0 18px rgba(249, 115, 22, 0.20),
-              0 0 38px rgba(239, 68, 68, 0.12),
-              0 0 80px rgba(249, 115, 22, 0.10);
-          }
+        @keyframes borderShimmer {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
 
-        .warm-frame {
-          box-shadow:
-            0 0 0 1px rgba(249, 115, 22, 0.22),
-            0 0 18px rgba(249, 115, 22, 0.16),
-            0 0 34px rgba(239, 68, 68, 0.08),
-            0 0 70px rgba(249, 115, 22, 0.07);
-          transform: translateZ(0);
+        @keyframes eyeBlink {
+          0%, 44%, 48%, 100% { transform: scaleY(1); }
+          46% { transform: scaleY(0.18); }
         }
 
-        .warm-frame-soft {
-          box-shadow:
-            0 0 0 1px rgba(249, 115, 22, 0.16),
-            0 0 10px rgba(249, 115, 22, 0.10),
-            0 0 22px rgba(239, 68, 68, 0.05),
-            0 0 46px rgba(249, 115, 22, 0.04);
-          transform: translateZ(0);
+        @keyframes antennaBob {
+          0%, 100% { transform: translateX(-50%) rotate(0deg); }
+          50% { transform: translateX(-50%) rotate(6deg); }
         }
 
-        .animated-outline,
-        .animated-outline-soft,
-        .animated-outline-light {
+        @keyframes iconDrift {
+          0%, 100% { transform: translate3d(0, 0, 0); }
+          50% { transform: translate3d(0, -5px, 0); }
+        }
+
+        .botify-panel {
           position: relative;
-          border: 1px solid transparent !important;
-          background-origin: border-box;
-          background-clip: padding-box, border-box;
-          transform: translateZ(0);
+          border: 1px solid transparent;
+          background:
+            linear-gradient(rgba(10,17,30,0.9), rgba(10,17,30,0.9)) padding-box,
+            linear-gradient(135deg, rgba(59,130,246,0.22), rgba(255,255,255,0.18), rgba(59,130,246,0.34), rgba(29,78,216,0.18)) border-box;
         }
 
-        .animated-outline {
-          background-image:
-            linear-gradient(rgba(11,17,29,0.96), rgba(11,17,29,0.96)),
-            linear-gradient(
-              135deg,
-              rgba(249,115,22,0.34),
-              rgba(251,146,60,0.96),
-              rgba(239,68,68,0.90),
-              rgba(249,115,22,0.34)
-            );
+        .botify-panel::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(120deg, rgba(59,130,246,0.06), transparent 35%, rgba(255,255,255,0.04) 55%, transparent 76%);
+          pointer-events: none;
         }
 
-        .animated-outline-soft {
-          background-image:
-            linear-gradient(rgba(11,17,29,0.90), rgba(11,17,29,0.90)),
-            linear-gradient(
-              135deg,
-              rgba(249,115,22,0.24),
-              rgba(251,146,60,0.72),
-              rgba(239,68,68,0.72),
-              rgba(249,115,22,0.24)
-            );
+        .botify-panel-soft {
+          position: relative;
+          border: 1px solid transparent;
+          background:
+            linear-gradient(rgba(9,15,26,0.92), rgba(9,15,26,0.92)) padding-box,
+            linear-gradient(140deg, rgba(59,130,246,0.17), rgba(255,255,255,0.12), rgba(37,99,235,0.22)) border-box;
         }
 
-        .animated-outline-light {
-          background-image:
-            linear-gradient(#ffffff, #ffffff),
-            linear-gradient(
-              135deg,
-              rgba(249,115,22,0.38),
-              rgba(251,146,60,0.98),
-              rgba(239,68,68,0.96),
-              rgba(249,115,22,0.38)
-            );
+        .botify-glow {
+          animation: pulseGlow 4.5s ease-in-out infinite;
         }
 
-        .interactive-card {
-          transition:
-            transform 220ms ease,
-            box-shadow 220ms ease,
-            opacity 220ms ease;
-          will-change: transform;
+        .botify-float {
+          animation: floatSlow 7s ease-in-out infinite;
         }
 
-        .interactive-card:hover {
-          transform: translate3d(0, -4px, 0);
-          box-shadow:
-            0 0 0 1px rgba(251,146,60,0.28),
-            0 0 22px rgba(249,115,22,0.22),
-            0 0 44px rgba(239,68,68,0.12),
-            0 0 90px rgba(249,115,22,0.10);
+        .botify-icon-card {
+          animation: iconDrift 5.6s ease-in-out infinite;
         }
 
-        .hero-float {
-          animation: floatCard 7s ease-in-out infinite;
-          will-change: transform;
-        }
-
-        .reveal-up {
-          animation: fadeUp 0.7s ease both;
-        }
-
-        .reveal-delay-1 { animation-delay: 0.05s; }
-        .reveal-delay-2 { animation-delay: 0.12s; }
-        .reveal-delay-3 { animation-delay: 0.20s; }
-
-        .store-button {
+        .botify-scroll-robot {
+          animation: pulseGlow 4.8s ease-in-out infinite;
           position: relative;
           overflow: hidden;
         }
 
-        .store-button::after {
+        .botify-robot-head {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #f8fbff 0%, #d8e5ff 100%);
+          box-shadow: 0 14px 34px rgba(15, 23, 42, 0.28);
+        }
+
+        .botify-robot-head::after {
           content: "";
           position: absolute;
-          inset: -40% auto -40% -35%;
-          width: 30%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.55),
-            transparent
-          );
-          animation: sheen 5.8s ease-in-out infinite;
-          pointer-events: none;
-          will-change: transform;
+          inset: auto 15% 8% 15%;
+          height: 18%;
+          border-radius: 999px;
+          background: rgba(15, 23, 42, 0.07);
+          filter: blur(4px);
         }
 
-        .ambient-orb {
-          animation: ambientOrb 9s ease-in-out infinite;
-          will-change: transform, opacity;
+        .botify-robot-face {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.45rem;
+          width: 74%;
+          height: 58%;
+          border-radius: 999px;
+          background: radial-gradient(circle at 50% 40%, #0c1730, #030712 80%);
+          box-shadow: inset 0 0 18px rgba(59,130,246,0.12);
         }
 
-        .glow-breathe {
-          animation: ledPulse 4.2s ease-in-out infinite;
+        .botify-robot-eye {
+          display: inline-block;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #7dd3fc 0%, #3b82f6 100%);
+          box-shadow: 0 0 14px rgba(59,130,246,0.95);
+          animation: eyeBlink 6.2s infinite ease-in-out;
         }
 
-        .glow-breathe-soft {
-          animation: ledPulseSoft 4.6s ease-in-out infinite;
+        .botify-robot-antenna {
+          position: absolute;
+          left: 50%;
+          top: -18%;
+          width: 0.18rem;
+          height: 0.9rem;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #dbeafe 0%, #93c5fd 100%);
+          animation: antennaBob 4.2s ease-in-out infinite;
+        }
+
+        .botify-robot-antenna::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: -0.42rem;
+          width: 0.62rem;
+          height: 0.62rem;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+          box-shadow: 0 0 12px rgba(59,130,246,0.7);
+          transform: translateX(-50%);
+        }
+
+        .botify-robot-ear {
+          position: absolute;
+          left: -8%;
+          top: 37%;
+          width: 0.7rem;
+          height: 0.7rem;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #dbeafe 0%, #93c5fd 100%);
+          box-shadow: inset 0 0 0 0.16rem #dfeaff;
         }
 
         @media (prefers-reduced-motion: reduce) {
-          html {
-            scroll-behavior: auto;
-          }
-
-          *,
-          *::before,
-          *::after {
+          html { scroll-behavior: auto; }
+          *, *::before, *::after {
             animation: none !important;
-            transition-duration: 0.001ms !important;
+            transition: none !important;
           }
         }
       `}</style>
-      <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#070b14]/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
-          <a href="#download" className="shrink-0 text-lg font-bold tracking-tight sm:text-xl">
-            Botify bot Ltd
+
+      <ScrollRobot progress={scrollProgress} />
+
+      <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#060b15]/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
+          <a href="#download" className="flex items-center gap-3">
+            <BotifyLogoMark size="sm" />
+            <div>
+              <p className="text-base font-bold leading-none tracking-tight sm:text-lg">Botify bot Ltd</p>
+              <p className="mt-1 hidden text-[11px] text-gray-500 sm:block">AI-powered customer conversations</p>
+            </div>
           </a>
 
-          <div className="hidden items-center gap-8 text-sm text-gray-300 md:flex">
-            <a href="#features" className="transition hover:text-white">
-              Features
-            </a>
-            <a href="#how-it-works" className="transition hover:text-white">
-              How It Works
-            </a>
-            <a href="#security" className="transition hover:text-white">
-              Privacy
-            </a>
-            <a href="#download" className="transition hover:text-white">
-              Download
-            </a>
-            <a href="#contact" className="transition hover:text-white">
-              Contact
-            </a>
+          <div className="hidden items-center gap-7 text-sm text-gray-300 md:flex">
+            <a href="#features" className="transition hover:text-white">Features</a>
+            <a href="#how-it-works" className="transition hover:text-white">How It Works</a>
+            <a href="#security" className="transition hover:text-white">Privacy</a>
+            <a href="#contact" className="transition hover:text-white">Contact</a>
           </div>
 
           <a
             href="#download"
-            className="shrink-0 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-semibold transition hover:bg-blue-500 sm:px-5 sm:text-sm"
+            className="rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-semibold transition hover:bg-blue-500 sm:px-5 sm:text-sm"
           >
             Get the App
           </a>
         </div>
       </nav>
 
-      <section
-        id="download"
-        className="relative scroll-mt-20 overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-18 md:pb-32 md:pt-28"
-      >
-        <div className="ambient-orb pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_12%,rgba(249,115,22,0.20),transparent_30%),radial-gradient(circle_at_72%_34%,rgba(239,68,68,0.15),transparent_34%),radial-gradient(circle_at_28%_24%,rgba(37,99,235,0.18),transparent_32%)]" />
+      <section id="download" className="relative scroll-mt-24 overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pb-20 md:pb-28 md:pt-20">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(37,99,235,0.18),transparent_28%),radial-gradient(circle_at_68%_14%,rgba(255,255,255,0.09),transparent_24%),radial-gradient(circle_at_74%_36%,rgba(37,99,235,0.14),transparent_30%),radial-gradient(circle_at_48%_78%,rgba(59,130,246,0.10),transparent_28%)]" />
 
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid items-center gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-            <div className="reveal-up reveal-delay-1">
-              <div className="inline-flex rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-2 text-xs text-blue-400 sm:px-4 sm:text-sm">
-                AI-powered customer conversations
+          <div className="grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
+            <div>
+              <div className="inline-flex rounded-full border border-blue-500/25 bg-blue-500/10 px-3.5 py-2 text-xs text-blue-300 sm:px-4 sm:text-sm">
+                Smarter support for growing businesses
               </div>
 
-              <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl md:mt-7 md:text-6xl lg:text-7xl">
-                Smarter support.
-                <span className="block text-blue-500">One mobile app.</span>
+              <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.02] sm:text-5xl md:text-6xl lg:text-7xl">
+                One identity.
+                <span className="mt-1 block text-blue-500">One smooth mobile experience.</span>
               </h1>
 
-              <p className="mt-5 max-w-2xl text-base leading-7 text-gray-400 sm:mt-7 sm:text-lg sm:leading-8">
-                Botify bot Ltd helps businesses manage customer conversations across
-                WhatsApp, Facebook, and Instagram with AI-powered assistance
-                designed for everyday business use.
+              <p className="mt-5 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
+                Botify bot Ltd helps businesses manage customer conversations across WhatsApp,
+                Facebook, and Instagram with a clean, modern AI experience that looks great on
+                desktop and mobile.
               </p>
 
-              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
                   href="#"
-                  className="store-button warm-frame animated-outline-light interactive-card w-full rounded-2xl border border-white/10 bg-white px-5 py-3 text-left text-black transition hover:opacity-95 sm:w-auto sm:min-w-52 sm:px-6"
+                  className="botify-panel botify-glow w-full rounded-2xl bg-white px-5 py-3 text-left text-black transition hover:opacity-95 sm:w-auto sm:min-w-52 sm:px-6"
                 >
                   <span className="block text-xs">Download on the</span>
                   <span className="block text-lg font-semibold">App Store</span>
@@ -319,71 +351,69 @@ export default function Home() {
 
                 <a
                   href="#"
-                  className="store-button warm-frame animated-outline-light interactive-card w-full rounded-2xl border border-white/10 bg-white px-5 py-3 text-left text-black transition hover:opacity-95 sm:w-auto sm:min-w-52 sm:px-6"
+                  className="botify-panel botify-glow w-full rounded-2xl bg-white px-5 py-3 text-left text-black transition hover:opacity-95 sm:w-auto sm:min-w-52 sm:px-6"
                 >
                   <span className="block text-xs">GET IT ON</span>
                   <span className="block text-lg font-semibold">Google Play</span>
                 </a>
               </div>
 
-              <p className="mt-4 text-xs text-gray-600">
-                Official store links will be added after publication.
-              </p>
-
               <div className="mt-7 grid gap-2 text-sm text-gray-500 sm:flex sm:flex-wrap sm:gap-x-7 sm:gap-y-3">
-                <span>✓ Built for businesses</span>
+                <span>✓ Smooth scroll</span>
+                <span>✓ Mobile responsive</span>
                 <span>✓ AI-assisted replies</span>
-                <span>✓ Multi-channel support</span>
               </div>
             </div>
 
-            <div className="hero-float relative mx-auto w-full max-w-xl lg:mx-0">
-              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.22),rgba(239,68,68,0.10),transparent_72%)] blur-3xl" />
+            <div className="botify-float relative mx-auto w-full max-w-2xl">
+              <div className="absolute -inset-8 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.24),transparent_65%)] blur-3xl" />
 
-              <div className="warm-frame animated-outline glow-breathe relative rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-2.5 shadow-2xl shadow-black/30 sm:rounded-[2rem] sm:p-4">
-                <div className="rounded-[1.1rem] border border-white/10 bg-[#0b111d] p-4 sm:rounded-[1.5rem] sm:p-5">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                    <div>
-                      <p className="text-xs text-gray-500">Botify bot Ltd</p>
-                      <p className="mt-1 font-semibold">Business Inbox</p>
+              <div className="botify-panel botify-glow relative overflow-hidden rounded-[2rem] bg-[#0a1323]/90 p-3 shadow-[0_24px_100px_rgba(2,6,23,0.55)] sm:p-4">
+                <div className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_70%)]" />
+
+                <div className="relative rounded-[1.55rem] border border-white/10 bg-[#09111e] p-4 sm:p-5">
+                  <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="botify-icon-card rounded-2xl bg-blue-500/10 p-2.5">
+                        <BotifyLogoMark size="md" />
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.18em] text-gray-500">Botify bot Ltd</p>
+                        <p className="mt-1 text-lg font-semibold">Business Inbox</p>
+                      </div>
                     </div>
                     <div className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400">
                       AI Active
                     </div>
                   </div>
 
-                  <div className="mt-5 space-y-4">
-                    <div className="animated-outline-soft glow-breathe-soft interactive-card max-w-[92%] rounded-2xl rounded-tl-md border border-white/10 bg-white/[0.04] p-4 sm:max-w-[85%]">
+                  <div className="mt-5 grid gap-4">
+                    <div className="botify-panel-soft rounded-2xl rounded-tl-md bg-white/[0.03] p-4">
                       <p className="text-xs text-gray-500">Customer</p>
-                      <p className="mt-2 text-sm leading-6 text-gray-300">
-                        Hi, is this product available today?
-                      </p>
+                      <p className="mt-2 text-sm leading-6 text-gray-300">Hi, is this product available today?</p>
                     </div>
 
-                    <div className="animated-outline-soft glow-breathe-soft interactive-card ml-auto max-w-[94%] rounded-2xl rounded-tr-md border border-blue-500/20 bg-blue-500/10 p-4 sm:max-w-[88%]">
-                      <p className="text-xs text-blue-400">Botify bot Ltd</p>
+                    <div className="botify-panel-soft ml-auto rounded-2xl rounded-tr-md bg-blue-500/8 p-4 sm:max-w-[88%]">
+                      <p className="text-xs text-blue-300">Botify bot Ltd</p>
                       <p className="mt-2 text-sm leading-6 text-gray-200">
-                        Yes, it is available. I can also help you with the price,
-                        delivery details, or any other question.
+                        Yes, it is available. I can also help with pricing, delivery details,
+                        and any other question.
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-2 pt-2 sm:grid-cols-3 sm:gap-3">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                       {[
                         ["WhatsApp", "Connected"],
                         ["Facebook", "Ready"],
                         ["Instagram", "Ready"],
-                      ].map(([name, status]) => (
+                      ].map(([name, status], index) => (
                         <div
                           key={name}
-                          className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-xl border border-white/10 bg-black/10 p-3"
+                          className="botify-panel-soft rounded-xl bg-[#0b1220] p-3"
+                          style={{ animationDelay: `${index * 180}ms` }}
                         >
-                          <p className="truncate text-xs font-medium text-gray-300">
-                            {name}
-                          </p>
-                          <p className="mt-1 text-[11px] text-gray-600">
-                            {status}
-                          </p>
+                          <p className="truncate text-xs font-medium text-gray-300">{name}</p>
+                          <p className="mt-1 text-[11px] text-gray-500">{status}</p>
                         </div>
                       ))}
                     </div>
@@ -407,65 +437,67 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="features" className="reveal-up reveal-delay-2 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+      <section id="features" className="px-4 py-16 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
-              Features
-            </p>
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">Features</p>
             <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-              Everything your business needs to respond smarter.
+              A cleaner visual identity across the whole page.
             </h2>
             <p className="mt-5 leading-7 text-gray-400">
-              A simple mobile experience for customer conversations, AI assistance,
-              and connected messaging channels.
+              Your logo now fits the site better, the outer square frame is removed,
+              and the robot character matches the overall product style.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:mt-12 md:grid-cols-2 md:gap-5 lg:mt-14 lg:grid-cols-3">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition sm:p-6"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/15 text-sm font-bold text-blue-400">
-                  ✓
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, index) => (
+              <div key={feature.title} className="botify-panel-soft rounded-2xl bg-white/[0.03] p-5 sm:p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/12">
+                    <BotifyLogoMark size="sm" />
+                  </div>
+                  <span className="text-xs text-blue-300/90">0{index + 1}</span>
                 </div>
                 <h3 className="mt-5 text-lg font-semibold">{feature.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-gray-400">
-                  {feature.text}
-                </p>
+                <p className="mt-3 text-sm leading-6 text-gray-400">{feature.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section
-        id="how-it-works"
-        className="reveal-up reveal-delay-2 border-y border-white/10 bg-white/[0.015] px-4 py-16 sm:px-6 sm:py-20 md:py-24"
-      >
+      <section id="how-it-works" className="border-y border-white/10 bg-white/[0.015] px-4 py-16 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-9 sm:gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-12">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
-                How It Works
-              </p>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">How It Works</p>
               <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-                From download to smarter replies in a few steps.
+                Smooth, responsive, and easy to understand.
               </h2>
               <p className="mt-5 leading-7 text-gray-400">
-                Botify bot Ltd is designed to keep setup simple so businesses can
-                focus on customers instead of complicated tools.
+                The page is designed to feel smooth while scrolling, with a moving assistant robot
+                that gives the page more life without becoming distracting.
               </p>
+
+              <div className="mt-8 botify-panel rounded-3xl bg-[#09111e]/90 p-5 sm:p-6">
+                <div className="flex items-center gap-4">
+                  <div className="rounded-2xl bg-blue-500/10 p-2.5">
+                    <BotifyLogoMark size="lg" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-semibold">Logo integrated with the website</p>
+                    <p className="mt-2 text-sm leading-6 text-gray-400">
+                      No outer square frame, cleaner branding, and a robot mascot that feels native to the page.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
               {steps.map(([number, title, text]) => (
-                <div
-                  key={number}
-                  className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6"
-                >
+                <div key={number} className="botify-panel-soft rounded-2xl bg-[#09111e] p-5 sm:p-6">
                   <div className="text-sm font-bold text-blue-400">{number}</div>
                   <h3 className="mt-5 text-lg font-semibold">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-gray-400">{text}</p>
@@ -476,115 +508,67 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="security" className="reveal-up reveal-delay-3 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
-        <div className="warm-frame animated-outline glow-breathe mx-auto max-w-7xl rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-blue-600/[0.04] p-5 sm:p-8 md:p-12">
-          <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:items-center">
+      <section id="security" className="px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+        <div className="botify-panel botify-glow mx-auto max-w-7xl rounded-3xl bg-gradient-to-br from-white/[0.03] to-blue-600/[0.05] p-5 sm:p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
-                Privacy & Trust
-              </p>
-              <h2 className="mt-4 text-3xl font-bold md:text-4xl">
-                Clear policies. Responsible access.
-              </h2>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">Privacy & Trust</p>
+              <h2 className="mt-4 text-3xl font-bold md:text-4xl">Clear policies. Responsible access.</h2>
               <p className="mt-5 max-w-2xl leading-7 text-gray-400">
-                Botify bot Ltd provides clear privacy, terms, and data deletion
-                information so businesses can understand how the service works
-                before connecting their messaging channels.
+                Botify bot Ltd provides clear privacy, terms, and data deletion information so businesses
+                can understand how the service works before connecting their messaging channels.
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-1">
-              <a
-                href="/privacy"
-                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
-              >
-                <p className="font-semibold">Privacy Policy</p>
-                <p className="mt-2 text-sm text-gray-500">
-                  Learn how information is handled.
-                </p>
-              </a>
-
-              <a
-                href="/terms"
-                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
-              >
-                <p className="font-semibold">Terms of Service</p>
-                <p className="mt-2 text-sm text-gray-500">
-                  Review the terms for using Botify bot Ltd.
-                </p>
-              </a>
-
-              <a
-                href="/data-deletion"
-                className="warm-frame-soft animated-outline-soft glow-breathe-soft interactive-card rounded-2xl border border-white/10 bg-black/10 p-4 transition sm:p-5"
-              >
-                <p className="font-semibold">Data Deletion</p>
-                <p className="mt-2 text-sm text-gray-500">
-                  See how to request deletion of your data.
-                </p>
-              </a>
+            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              {[
+                ["/privacy", "Privacy Policy", "Learn how information is handled."],
+                ["/terms", "Terms of Service", "Review the terms for using Botify bot Ltd."],
+                ["/data-deletion", "Data Deletion", "See how to request deletion of your data."],
+              ].map(([href, title, text]) => (
+                <a key={href} href={href} className="botify-panel-soft rounded-2xl bg-black/10 p-4 transition hover:-translate-y-0.5 sm:p-5">
+                  <p className="font-semibold">{title}</p>
+                  <p className="mt-2 text-sm text-gray-500">{text}</p>
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-
-      <section
-        id="contact"
-        className="reveal-up reveal-delay-3 border-t border-white/10 px-4 py-16 sm:px-6 sm:py-20 md:py-24"
-      >
-        <div className="warm-frame animated-outline glow-breathe mx-auto max-w-7xl rounded-3xl border border-white/10 bg-white/[0.025] p-5 sm:p-8 md:p-12">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-12">
+      <section id="contact" className="border-t border-white/10 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+        <div className="botify-panel botify-glow mx-auto max-w-7xl rounded-3xl bg-white/[0.025] p-5 sm:p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">
-                Contact Us
-              </p>
-              <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-                Get in touch with Botify bot Ltd.
-              </h2>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-400">Contact Us</p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">Get in touch with Botify bot Ltd.</h2>
               <p className="mt-5 max-w-xl leading-7 text-gray-400">
                 For business, support, privacy, or data-related enquiries, contact us using the details provided here.
               </p>
             </div>
 
             <div className="grid gap-4">
-              <div className="warm-frame-soft animated-outline-soft glow-breathe-soft rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
-                  Business email
-                </p>
-                <a
-                  href="mailto:support@botifybot.co"
-                  className="mt-2 inline-block break-all text-base font-semibold text-blue-400 transition hover:text-blue-300"
-                >
+              <div className="botify-panel-soft rounded-2xl bg-[#0b111d] p-5 sm:p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">Business email</p>
+                <a href="mailto:support@botifybot.co" className="mt-2 inline-block break-all text-base font-semibold text-blue-400 transition hover:text-blue-300">
                   support@botifybot.co
                 </a>
 
                 <div className="mt-5 border-t border-white/10 pt-5">
-                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
-                    Phone
-                  </p>
-                  <a
-                    href="tel:+447412845318"
-                    className="mt-2 inline-block text-base font-semibold text-gray-200 transition hover:text-white"
-                  >
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">Phone</p>
+                  <a href="tel:+447412845318" className="mt-2 inline-block text-base font-semibold text-gray-200 transition hover:text-white">
                     +44 7412 845318
                   </a>
                 </div>
               </div>
 
-              <div className="warm-frame-soft animated-outline-soft glow-breathe-soft rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
-                  Company number
-                </p>
-                <p className="mt-2 text-base font-semibold text-gray-200">
-                  17424187
-                </p>
+              <div className="botify-panel-soft rounded-2xl bg-[#0b111d] p-5 sm:p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">Company number</p>
+                <p className="mt-2 text-base font-semibold text-gray-200">17424187</p>
               </div>
 
-              <div className="warm-frame-soft animated-outline-soft glow-breathe-soft rounded-2xl border border-white/10 bg-[#0b111d] p-5 sm:p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
-                  Address
-                </p>
+              <div className="botify-panel-soft rounded-2xl bg-[#0b111d] p-5 sm:p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">Address</p>
                 <address className="mt-2 not-italic text-base leading-7 text-gray-300">
                   Diamond Court, Water Street, Bakewell, DE45 1EW
                 </address>
@@ -596,29 +580,21 @@ export default function Home() {
 
       <footer className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 text-sm text-gray-500 sm:px-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="font-medium text-gray-300">Botify bot Ltd</p>
-            <p className="mt-1">AI-powered customer conversations.</p>
-            <p className="mt-1 text-xs text-gray-600">Company number: 17424187</p>
-            <p className="mt-1 max-w-md text-xs leading-5 text-gray-600">Diamond Court, Water Street, Bakewell, DE45 1EW</p>
+          <div className="flex items-start gap-4">
+            <BotifyLogoMark size="md" />
+            <div>
+              <p className="font-medium text-gray-300">Botify bot Ltd</p>
+              <p className="mt-1">AI-powered customer conversations.</p>
+              <p className="mt-1 text-xs text-gray-600">Company number: 17424187</p>
+              <p className="mt-1 max-w-md text-xs leading-5 text-gray-600">Diamond Court, Water Street, Bakewell, DE45 1EW</p>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-5">
-            <a href="/privacy" className="transition hover:text-gray-300">
-              Privacy
-            </a>
-            <a href="/terms" className="transition hover:text-gray-300">
-              Terms
-            </a>
-            <a href="/data-deletion" className="transition hover:text-gray-300">
-              Data Deletion
-            </a>
-            <a
-              href="mailto:support@botifybot.co"
-              className="transition hover:text-gray-300"
-            >
-              Support
-            </a>
+            <a href="/privacy" className="transition hover:text-gray-300">Privacy</a>
+            <a href="/terms" className="transition hover:text-gray-300">Terms</a>
+            <a href="/data-deletion" className="transition hover:text-gray-300">Data Deletion</a>
+            <a href="mailto:support@botifybot.co" className="transition hover:text-gray-300">Support</a>
           </div>
 
           <p>© 2026 Botify bot Ltd. All rights reserved.</p>
